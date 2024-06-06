@@ -13,17 +13,17 @@ jobs:
 
       - name: Set up and download entry
         run: |
-          GIT_ROOT=$(pwd)
-          sudo chmod +x $GIT_ROOT/input.sh
-          source $GIT_ROOT/input.sh
-
           sudo add-apt-repository -y multiverse
           sudo dpkg --add-architecture i386
           echo steam steam/question select "I AGREE" | sudo debconf-set-selections
           echo steam steam/license note "" | sudo debconf-set-selections
           sudo apt update
           sudo apt install -y steamcmd
-          
+
+          GIT_ROOT=$(pwd)
+          echo "pwd: $GIT_ROOT"
+          sudo chmod +x $GIT_ROOT/input.sh
+          source $GIT_ROOT/input.sh
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
           mv /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $GIT_ROOT/downloaded/
           tree -i $GIT_ROOT
