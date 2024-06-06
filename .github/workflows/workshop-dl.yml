@@ -15,12 +15,6 @@ jobs:
         run: |
           sudo chmod +x ./input.sh
           source ./input.sh
-          
-          sudo useradd -m steam
-          echo "steam:password" | sudo chpasswd
-          sudo mkdir -p /home/steam
-          sudo chown -R steam:steam /home/steam
-          sudo -u steam bash
 
           sudo add-apt-repository -y multiverse
           sudo dpkg --add-architecture i386
