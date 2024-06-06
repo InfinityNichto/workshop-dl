@@ -25,8 +25,8 @@ jobs:
           sudo chmod +x $GIT_ROOT/input.sh
           source $GIT_ROOT/input.sh
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
-          mv /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $GIT_ROOT/downloaded/
-          tree -i $GIT_ROOT
+          mv -v /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $GIT_ROOT/downloaded/
+          ls -la $GIT_ROOT
         shell: bash
 
       - name: Push downloaded contents to repository
