@@ -30,7 +30,7 @@ jobs:
           sudo apt install -y steamcmd
           
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
-          shell: bash
+        shell: bash
 
       - name: Push downloaded contents to repository
         run: |
@@ -40,6 +40,4 @@ jobs:
           git add .
           git commit -m "Add downloaded workshop item $ENTRY_ID"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
