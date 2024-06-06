@@ -28,11 +28,8 @@ jobs:
 
       - name: Move contents
         run: |
-          if [ ! -d "./downloaded/$APP_ID" ]; then
-             mkdir -p "./downloaded/$APP_ID"
-          fi
-          cp -r /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/$APP_ID
-          ls -la ./downloaded/
+          cp -r /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/
+          ls -lar ./downloaded/
         shell: bash
 
       - name: Save contents to repository
