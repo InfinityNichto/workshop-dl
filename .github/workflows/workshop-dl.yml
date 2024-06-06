@@ -20,13 +20,17 @@ jobs:
           sudo apt update
           sudo apt install -y steamcmd
 
-          GIT_ROOT=$(pwd)
-          echo "pwd: $GIT_ROOT"
-          sudo chmod +x $GIT_ROOT/input.sh
-          source $GIT_ROOT/input.sh
+          REPO_ROOT=$(pwd)
+          echo "pwd: $REPO_ROOT"
+          sudo chmod +x $REPO_ROOT/input.sh
+          source $REPO_ROOT/input.sh
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
-          mv -v /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $GIT_ROOT/downloaded/
-          ls -la $GIT_ROOT
+
+          if [ ! -d "$REPO_ROOT/downloaded/$APP_ID" ]; then
+             mkdir -p "$REPO_ROOT/downloaded/$APP_ID"
+          fi
+          cp /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $REPO_ROOT/downloaded/$APP_ID
+          ls -la $REPO_ROOT/downloaded/
         shell: bash
 
       - name: Push downloaded contents to repository
