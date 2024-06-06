@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up and download entry
+      - name: Install steamcmd
         run: |
           sudo add-apt-repository -y multiverse
           sudo dpkg --add-architecture i386
@@ -20,20 +20,22 @@ jobs:
           sudo apt update
           sudo apt install -y steamcmd
 
-          REPO_ROOT=$(pwd)
-          echo "pwd: $REPO_ROOT"
-          sudo chmod +x $REPO_ROOT/input.sh
-          source $REPO_ROOT/input.sh
+      - name: Run steamcmd
+        run: |
+          sudo chmod +x ./input.sh
+          source ./input.sh
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
 
-          if [ ! -d "$REPO_ROOT/downloaded/$APP_ID" ]; then
-             mkdir -p "$REPO_ROOT/downloaded/$APP_ID"
+      - name: Move contents
+        run: |
+          if [ ! -d ./downloaded/$APP_ID" ]; then
+             mkdir -p ./downloaded/$APP_ID"
           fi
-          cp /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID $REPO_ROOT/downloaded/$APP_ID
-          ls -la $REPO_ROOT/downloaded/
+          cp /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/$APP_ID
+          ls -la ./downloaded/
         shell: bash
 
-      - name: Push downloaded contents to repository
+      - name: Save contents to repository
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
