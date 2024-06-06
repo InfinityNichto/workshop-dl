@@ -30,11 +30,11 @@ jobs:
           sudo apt install -y steamcmd
           
           exec steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
+          mv /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/
         shell: bash
 
       - name: Push downloaded contents to repository
         run: |
-          cd /home/runner/Steam/steamapps/workshop/content/$APP_ID
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
