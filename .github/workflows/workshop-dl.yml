@@ -27,11 +27,10 @@ jobs:
 
       - name: Switch to steam user and download entry
         run: |
-          source ./input.sh << EOF
+          source ./input.sh
           sudo -u steam bash
           cd /home/steam
           steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
-          EOF
         shell: bash
 
       - name: Push downloaded contents to repository
