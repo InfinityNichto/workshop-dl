@@ -25,11 +25,11 @@ jobs:
           sudo apt install -y steamcmd
         shell: bash
 
-      - name: Switch to steam user and download
+      - name: Switch to steam user and download entry
         run: |
-          sudo -u steam bash << EOF
+          source ./input.sh << EOF
+          sudo -u steam bash
           cd /home/steam
-          source ./input.sh
           steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
           EOF
         shell: bash
