@@ -31,7 +31,7 @@ jobs:
           if [ ! -d "./downloaded/$APP_ID" ]; then
              mkdir -p "./downloaded/$APP_ID"
           fi
-          cp /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/$APP_ID
+          cp -r /home/runner/Steam/steamapps/workshop/content/$APP_ID/$ENTRY_ID ./downloaded/$APP_ID
           ls -la ./downloaded/
         shell: bash
 
