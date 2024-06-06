@@ -30,8 +30,9 @@ jobs:
           
           sudo -u steam bash
           cd /home/steam
-          steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
-        shell: bash
+          cmd="steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
+          exec $cmd
+          shell: bash
 
       - name: Push downloaded contents to repository
         run: |
