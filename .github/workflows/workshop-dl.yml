@@ -1,0 +1,45 @@
+name: workshop-dl
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-and-download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up steam user
+        run: |
+          sudo useradd -m steam
+          echo "steam:password" | sudo chpasswd
+          sudo mkdir -p /home/steam
+          sudo chown -R steam:steam /home/steam
+          sudo add-apt-repository -y multiverse
+          sudo dpkg --add-architecture i386
+          sudo apt update
+          sudo apt install -y steamcmd
+        shell: bash
+
+      - name: Switch to steam user and download
+        run: |
+          sudo -u steam bash << EOF
+          cd /home/steam
+          source ./input.sh
+          steamcmd +login anonymous +workshop_download_item $APP_ID $ENTRY_ID +quit
+          EOF
+        shell: bash
+
+      - name: Push downloaded contents to repository
+        run: |
+          cd /home/steam/Steam/steamapps/workshop/content/$APP_ID
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Add downloaded workshop item $ENTRY_ID"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
