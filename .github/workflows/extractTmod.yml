@@ -10,21 +10,20 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    
-    - name: Set up environment
-      run: |
-        ./tmodUnpackerInput.bat
 
     - name: Create directories if they don't exist
       run: |
+        ./tModUnpackerInput.bat
         mkdir -p ./tmodFileExtracted/%TMODFILE%
 
     - name: Run tModUnpacker
       run: |
+        ./tModUnpackerInput.bat
         ./tModUnpacker.exe ./tmodFiles/%TMODFILE% ./tmodFileExtracted/%TMODFILE%/
    
     - name: Commit and push changes
       run: |
+        ./tModUnpackerInput.bat
         git add ./tmodFileExtracted/%TMODFILE%/
         git commit -m "Extracted %TMODFILE%"
         git push
