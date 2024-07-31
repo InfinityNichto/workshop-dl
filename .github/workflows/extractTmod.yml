@@ -24,3 +24,9 @@ jobs:
     - name: Run tModUnpacker
       run: |
         ./tModUnpacker.exe tmodFiles/$TMODFILE tmodFilesExtracted/$TMODFILE/
+        
+    - name: Commit and push changes
+      run: |
+        git add files_extracted/$TMODFILE/
+        git commit -m "Extracted $TMODFILE"
+        git push
