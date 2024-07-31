@@ -1,4 +1,4 @@
-SET TMODFILE=Weapon.tmod
+qSET TMODFILE=WeaponDisplay.tmod
 
 :: -------
 
