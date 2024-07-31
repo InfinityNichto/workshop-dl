@@ -3,11 +3,11 @@ SET TMODFILE=WeaponDisplay
 
 :: -------
 
-mkdir "tmodFileExtracted\%TMODFILE%"
-tModUnpacker.exe "tmodFile\%TMODFILE%.tmod" "tmodFileExtracted\%TMODFILE%\"
+mkdir "tmodFileExtracted\\%TMODFILE%"
+tModUnpacker.exe "tmodFile\\%TMODFILE%.tmod" "tmodFileExtracted\\%TMODFILE%\\"
 
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
-git add "tmodFileExtracted\%TMODFILE%\"
+git add "tmodFileExtracted\\%TMODFILE%\\"
 git commit -m "Extracted %TMODFILE%.tmod"
 git push
