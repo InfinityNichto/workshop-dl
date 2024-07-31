@@ -17,14 +17,14 @@ jobs:
 
     - name: Create directories if they don't exist
       run: |
-        mkdir -p ./tmodFilesExtracted/%TMODFILE%
+        mkdir -p ./tmodFileExtracted/%TMODFILE%
 
     - name: Run tModUnpacker
       run: |
-        ./tModUnpacker.exe ./tmodFiles/%TMODFILE% ./tmodFilesExtracted/%TMODFILE%/
+        ./tModUnpacker.exe ./tmodFiles/%TMODFILE% ./tmodFileExtracted/%TMODFILE%/
    
     - name: Commit and push changes
       run: |
-        git add ./tmodFilesExtracted/%TMODFILE%/
+        git add ./tmodFileExtracted/%TMODFILE%/
         git commit -m "Extracted %TMODFILE%"
         git push
