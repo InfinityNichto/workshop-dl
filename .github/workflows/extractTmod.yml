@@ -13,7 +13,7 @@ jobs:
     
     - name: Set up environment
       run: |
-        call ./tmodUnpackerInput.bat
+        ./tmodUnpackerInput.bat
 
     - name: Create directories if they don't exist
       run: |
