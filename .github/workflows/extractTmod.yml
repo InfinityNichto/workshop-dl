@@ -19,8 +19,8 @@ jobs:
 
     - name: Create directories if they don't exist
       run: |
-        mkdir -p files_extracted/$TMODFILE/
+        mkdir -p tmodFilesExtracted/$TMODFILE/
 
     - name: Run tModUnpacker
       run: |
-        tModUnpacker.exe tmodFiles/$TMODFILE tmodFilesExtracted/$TMODFILE/
+        ./tModUnpacker.exe tmodFiles/$TMODFILE tmodFilesExtracted/$TMODFILE/
