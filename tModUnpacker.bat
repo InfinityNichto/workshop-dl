@@ -1,4 +1,5 @@
-qSET TMODFILE=WeaponDisplay.tmod
+:: Do not use double quote here
+SET TMODFILE=WeaponDisplay.tmod
 
 :: -------
 
