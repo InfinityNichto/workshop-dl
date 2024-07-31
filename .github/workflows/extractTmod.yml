@@ -18,19 +18,20 @@ jobs:
 
     - name: Create directories if they don't exist
       run: |
-        mkdir -p tmodFilesExtracted/$TMODFILE/
+        mkdir -p ./tmodFilesExtracted/$TMODFILE/
       env:
         TMODFILE: ${{ env.TMODFILE }}
 
     - name: Run tModUnpacker
       run: |
-        ./tModUnpacker.exe tmodFiles/$TMODFILE tmodFilesExtracted/$TMODFILE/
+        echo $TMODFILE
+        ./tModUnpacker.exe ./tmodFiles/$TMODFILE ./tmodFilesExtracted/$TMODFILE/
       env:
         TMODFILE: ${{ env.TMODFILE }}
         
     - name: Commit and push changes
       run: |
-        git add files_extracted/$TMODFILE/
+        git add ./tmodFilesExtracted/$TMODFILE/
         git commit -m "Extracted $TMODFILE"
         git push
       env:
