@@ -1,5 +1,5 @@
 :: Do not use double quote here
-SET TMODFILE=WeaponDisplay
+SET TMODFILE=EquipAllAccessory_v0.0.0.3
 
 :: -------
 
