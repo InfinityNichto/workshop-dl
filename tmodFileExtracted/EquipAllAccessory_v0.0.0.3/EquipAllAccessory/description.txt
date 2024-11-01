@@ -1,0 +1,4 @@
+Let your players get all the effects of accessory
+让你的玩家获得所有饰品的效果
+update 0.0.0.3：Add blackList
+update 0.0.0.3：增加了黑名单
